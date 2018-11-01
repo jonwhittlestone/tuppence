@@ -1,0 +1,17 @@
+{
+    "name": "jonwhittlestone/laravel-starling",
+    "type": "library",
+    "require": {
+        "moneymeg/starling-php-sdk": "^1.0"
+    },
+    "require-dev": {
+         "phpunit/phpunit": "*"
+
+    },
+    "authors": [
+        {
+            "name": "Jon Whittlestone",
+            "email": "dev@howapped.com"
+        }
+    ]
+}
