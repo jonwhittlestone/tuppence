@@ -12,10 +12,9 @@
 */
 
 Route::get('/', function () {
-    return 'Tuppence Talk Banking Voice Assistant';
+    return "Tuppence Talk Banking Voice Assistant. See php artisan botman:tinker and type 'balance'";
 });
 
-Route::get('question/balance', 'QuestionController@balance');
 
 Auth::routes();
 
