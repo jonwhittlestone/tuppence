@@ -7,6 +7,20 @@ use Starling;
 
 class BudgetingConversation extends Conversation
 {
+    public function __construct() 
+    {
+        // set up API Wrapper identity/client
+        $this->identity = new Starling\Identity(
+            env('TUPPENCE_STARLING_CLIENT_IDENTITY')
+        );
+
+        $this->client = new Starling\Api\Client(
+            $this->identity, 
+            ['env' => env('TUPPENCE_STARLING_ENV')
+]
+        );
+    }
+
     public function run()
     {
         $allowedAnswers = __('bot.allowedAnswers');
@@ -24,24 +38,44 @@ class BudgetingConversation extends Conversation
                 if ($answer->getText() === 'balance') {
                     $this->sayBalance();
                 }
+
+                if ($answer->getText() === 'dd') {
+                    $this->sayDirectDebits();
+                }
             }
         );
     }
+
+    protected function sayDirectDebits()
+    {
+        $this->say('Your direct debits in a month are: ');
+
+        $request = new Starling\Api\Request\DirectDebits();
+
+        try {
+            $result = $this->client->request($request);
+            $body = json_decode((string) $result->getBody(), true);
+
+            foreach ($body[ '_embedded' ]['mandates'] as $m) {
+                $this->say($m['created'] . " - " . $m['reference']);
+            }
+
+        } catch (Exception $e) {
+            $this->say($e->getMessage());
+        }
+    }
+
 
     protected function sayBalance()
     {
 
         $balance = 0;
 
-        $identity = new Starling\Identity(
-            env('TUPPENCE_STARLING_CLIENT_IDENTITY')
-        );
 
-        $client = new Starling\Api\Client($identity, ['env' => 'prod']);
         $request = new Starling\Api\Request\Accounts\Balance();
 
         try {
-            $result = $client->request($request);
+            $result = $this->client->request($request);
             $body = json_decode((string) $result->getBody(), true);
             $balance = $body['effectiveBalance'];
 

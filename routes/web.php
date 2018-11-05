@@ -11,11 +11,10 @@
 |
 */
 
+
 Route::get('/', function () {
-    return "Tuppence Talk Banking Voice Assistant. See php artisan botman:tinker and type 'balance'";
+    return "Tuppence Talk Banking Voice Assistant. See php artisan botman:tinker and type 'budget'";
 });
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
