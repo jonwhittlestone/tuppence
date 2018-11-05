@@ -15,4 +15,16 @@
 ## Resources ##
 
 * [starling PHP SDK](https://github.com/MoneyMeg/starling-php-sdk)
+
 * https://course.buildachatbot.io
+
+* Alexa/OAuth/Connect to Facebook: https://matchboxmobile.com/oauth-using-alexa
+
+* https://web.telegram.org/#/im
+
+## Todos ##
+
+[ ] get end to end telegram/ngrok bot running where users can query balance
+[ ] OAuth2 transaction using Laravel Passport to authenticate with Starling to get related client_id
+[ ] Deploy code/container to VPS: http://bit.ly/2CZRYCh
+[ ] Alexa set up with Account Linking and Voice Profile
