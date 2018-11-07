@@ -1,24 +1,28 @@
 <?php
 
 use App\Http\Controllers\BotManController;
+use BotMan\BotMan\Middleware\Dialogflow;
 use App\Http\Conversations\BudgetingConversation;
 
-//use BotMan\BotMan\Drivers\DriverManager;
-//use BotMan\BotMan\BotManFactory;
 
-//DriverManager::loadDriver(\BotMan\Drivers\Telegram\TelegramDriver::class);
-
-// Create BotMan instance
-//BotManFactory::create($config);
 
 $botman = app('botman');
 
-//$botman->hears('balance',
-    //BotManController::class.'@balance'
-//);
-
 $startBot = __('bot.startBot');
 $botman->reply($startBot);
+
+/* Use NLP service to get budget */
+$dialogflow = Dialogflow::create(env('DIALOGFLOW_CLIENT_ACCESS_TOKEN'))
+    ->listenForAction();
+$botman
+    ->middleware
+    ->received($dialogflow);
+
+$botman
+    ->hears('getbalance', BotManController::class.'@balance')
+    ->middleware($dialogflow);
+
+
 
 $botman->hears('budget', function($bot){
     $bot->startConversation(new BudgetingConversation);

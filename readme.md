@@ -1,5 +1,7 @@
 # tuppence-talk #
 
+Simple Querying from Starling API incorporating chatbots, voice assistant, serverless microservices
+
 * Get the account balance from Starling
 * Have I been paid yet?
 * Tell me the dates of my monthly payments?
@@ -15,12 +17,10 @@
 ## Resources ##
 
 * [starling PHP SDK](https://github.com/MoneyMeg/starling-php-sdk)
-
 * https://course.buildachatbot.io
-
 * Alexa/OAuth/Connect to Facebook: https://matchboxmobile.com/oauth-using-alexa
-
 * https://web.telegram.org/#/im
+* https://github.com/footballencarta/serverless-lumen
 
 ## Todos ##
 
@@ -28,3 +28,8 @@
 [ ] OAuth2 transaction using Laravel Passport to authenticate with Starling to get related client_id
 [ ] Deploy code/container to VPS: http://bit.ly/2CZRYCh
 [ ] Alexa set up with Account Linking and Voice Profile
+[ ] Move balance service to Lumen and have Tuppence-Talk pull balance from Lumen service
+[ ] Put in own container alongside other containers and deploy
+[ ] Move to serverless environment
+[ ] blog article
+

@@ -66,7 +66,7 @@ class BudgetingConversation extends Conversation
     }
 
 
-    protected function sayBalance()
+    public function sayBalance()
     {
 
         $balance = 0;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use BotMan\BotMan\Messages\Conversations\Conversation;
 use Illuminate\Http\Request;
 use BotMan\BotMan\BotMan;
 
@@ -19,7 +20,7 @@ class BotManController extends Controller
         $this->botman->listen();
     }
 
-    //
+    
     public function balance($bot)
     {
         $balance = 0;
@@ -28,7 +29,9 @@ class BotManController extends Controller
             env('TUPPENCE_STARLING_CLIENT_IDENTITY')
         );
 
-        $client = new Starling\Api\Client($identity, ['env' => 'prod']);
+        $client = new Starling\Api\Client($identity, ['env' => 
+            env('TUPPENCE_STARLING_CLIENT_ENV')
+        ]);
         $request = new Starling\Api\Request\Accounts\Balance();
 
         try {
