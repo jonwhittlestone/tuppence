@@ -1,6 +1,6 @@
 # tuppence-talk #
 
-Simple Querying from Starling API incorporating chatbots, voice assistant, serverless microservices
+Simple Querying from Starling API incorporating telegram chatbot, Alexa voice assistant, serverless microservices
 
 * Get the account balance from Starling
 * Have I been paid yet?
@@ -24,12 +24,19 @@ Simple Querying from Starling API incorporating chatbots, voice assistant, serve
 
 ## Todos ##
 
-[ ] get end to end telegram/ngrok bot running where users can query balance
+[x] get end to end telegram/ngrok bot running where users can query balance
+
 [ ] OAuth2 transaction using Laravel Passport to authenticate with Starling to get related client_id
+
 [ ] Deploy code/container to VPS: http://bit.ly/2CZRYCh
+
 [ ] Alexa set up with Account Linking and Voice Profile
+
 [ ] Move balance service to Lumen and have Tuppence-Talk pull balance from Lumen service
+
 [ ] Put in own container alongside other containers and deploy
+
 [ ] Move to serverless environment
+
 [ ] blog article
 
