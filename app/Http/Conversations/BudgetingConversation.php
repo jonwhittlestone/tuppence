@@ -16,7 +16,7 @@ class BudgetingConversation extends Conversation
 
         $this->client = new Starling\Api\Client(
             $this->identity, 
-            ['env' => env('TUPPENCE_STARLING_ENV')
+            ['env' => env('TUPPENCE_STARLING_CLIENT_ENV')
 ]
         );
     }
