@@ -3,10 +3,16 @@
 namespace App\Http\Conversations;
 
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use Starling;
 
 class BudgetingConversation extends Conversation
 {
+    public function stopsConversation(IncomingMessage $message)
+    {
+        return true;
+    }
+
     public function __construct() 
     {
         // set up API Wrapper identity/client
@@ -21,40 +27,28 @@ class BudgetingConversation extends Conversation
         );
     }
 
-    public function stopsConversation(IncomingMessage $message)
-    {
-        return true;
-    }
-
     public function run()
     {
         $allowedAnswers = __('bot.allowedAnswers');
 
-        $this->ask("Please enter a selection, or type 'help' for a list of options:", [
-            'pattern'   => 'balance',
-            'callback'  => function() {
-                $this->sayBalance();
-                $this->stopsConversation();
+
+        $this->ask(
+            "Please enter a selection, or type 'help' for a list of options:",
+            function ($answer) use ($allowedAnswers) {
+                if (!in_array($answer->getText(), $allowedAnswers)) {
+                    return $this->repeat('This is not a valid answer'."\n");
+                }
+
+                if ($answer->getText() === 'balance') {
+                    $this->sayBalance();
+                    $this->stopsConversation();
+                }
+
+                if ($answer->getText() === 'dd') {
+                    $this->sayDirectDebits();
+                }
             }
-        ]);
-
-        //$this->ask(
-            //"Please enter a selection, or type 'help' for a list of options:",
-            //function ($answer) use ($allowedAnswers) {
-                //if (!in_array($answer->getText(), $allowedAnswers)) {
-                    //return $this->repeat('This is not a valid answer'."\n");
-                //}
-
-                //if ($answer->getText() === 'balance') {
-                    //$this->sayBalance();
-                    //$this->stopsConversation();
-                //}
-
-                //if ($answer->getText() === 'dd') {
-                    //$this->sayDirectDebits();
-                //}
-            //}
-        //);
+        );
     }
 
     protected function sayDirectDebits()

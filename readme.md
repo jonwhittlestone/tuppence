@@ -3,6 +3,7 @@
 Simple Querying from Starling API incorporating telegram chatbot, Alexa voice assistant, serverless microservices
 
 * Get the account balance from Starling
+* Alexa, text me my balance
 * Have I been paid yet?
 * Tell me the dates of my monthly payments?
 
