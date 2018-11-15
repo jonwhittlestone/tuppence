@@ -27,9 +27,11 @@ Simple Querying from Starling API incorporating telegram chatbot, Alexa voice as
 
 [x] get end to end telegram/ngrok bot running where users can query balance
 
+[ ] Alexa skill to say balance
+
 [ ] OAuth2 transaction using Laravel Passport to authenticate with Starling to get related client_id
 
-[ ] Deploy code/container to VPS: http://bit.ly/2CZRYCh
+[x] Deploy code/container to VPS: http://bit.ly/2CZRYCh
 
 [ ] Alexa set up with Account Linking and Voice Profile
 

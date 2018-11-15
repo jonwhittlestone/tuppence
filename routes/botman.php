@@ -20,9 +20,7 @@ $botman
     ->middleware
     ->received($dialogflow);
 
-//$botman
-    //->hears('getbalance', BotManController::class.'@balance')
-    //->middleware($dialogflow);
+
 
 $botman
     ->hears('balance', BotManController::class.'@balance');
@@ -39,6 +37,11 @@ $botman->hears('help', function($bot) {
 $botman->hears('exit', function ($bot)  {
     $bot->reply('Exited from the budget conversation');
 })->stopsConversation();
+
+// Listen for Amazon Alexa intent
+$botman->hears('SayBalance', function ($bot) {
+    $bot->reply('Your balance is £1 million');
+} );
 
 Route::post('/botman', function() {
     app('botman')->listen();
