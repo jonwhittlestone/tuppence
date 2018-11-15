@@ -20,15 +20,16 @@ $botman
     ->middleware
     ->received($dialogflow);
 
+//$botman
+    //->hears('getbalance', BotManController::class.'@balance')
+    //->middleware($dialogflow);
+
 $botman
-    ->hears('getbalance', BotManController::class.'@balance')
-    ->middleware($dialogflow);
+    ->hears('balance', BotManController::class.'@balance');
 
-
-
-$botman->hears('budget', function($bot){
-    $bot->startConversation(new BudgetingConversation);
-});
+//$botman->hears('budget', function($bot){
+    //$bot->startConversation(new BudgetingConversation);
+//});
 
 $botman->hears('help', function($bot) {
     $help = __('bot.help');
